@@ -2,6 +2,7 @@
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const header = document.querySelector('.header');
 ///////////////////////////////////////
 // Modal window
 
