@@ -1,5 +1,7 @@
 'use strict';
 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 ///////////////////////////////////////
 // Modal window
 
@@ -7,6 +9,7 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
 
 const openModal = function (e) {
   e.preventDefault();
@@ -30,3 +33,64 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+document.querySelector('.nav__links').addEventListener('click', function(e){
+  e.preventDefault();
+  // event delegation
+  if (e.target.classList.contains('nav__link')){
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+  }
+})
+
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML = 'We use coockies for improved functionality and analytics <button class="btn--close-cookie"> Got it! </button>';
+header.append(message);
+
+document.querySelector('.btn--close-cookie').addEventListener('click', function(){
+  message.remove();
+})
+
+message.style.background = '#37383d';
+message.style.width = '120%';
+
+document.documentElement.style.setProperty('--color-primary', 'khaki');
+
+
+
+btnScrollTo.addEventListener('click', function(e){
+  const btnScrollToCords = btnScrollTo.getBoundingClientRect();
+  const s1cords = section1.getBoundingClientRect();
+
+  section1.scrollIntoView({behavior: 'smooth'});  
+})
+
+// const h1 = document.querySelector('h1');
+// function h1Alert(){
+//   alert('Dustane Aziz Ham Aknun H1 :D');
+// }
+
+// h1.addEventListener('mouseenter', h1Alert);
+
+// setTimeout(() => h1.removeEventListener('mouseenter' ,h1Alert) ,3000);
+
+// const randomInt = (min, max) =>
+//  Math.floor(Math.random() * (max - min + 1) + min);
+
+// const randomColor = () => 
+// `rgb(${randomInt(0,255)},${randomInt(0,255)},${randomInt(0,255)})`;
+
+// document.querySelector('.nav__link').addEventListener('click', function(e){
+//   this.style.backgroundColor = randomColor();
+// })
+
+// document.querySelector('.nav__links').addEventListener('click', function(e){
+//   this.style.backgroundColor = randomColor();
+// })
+
+// document.querySelector('.nav').addEventListener('click', function(e){
+//   this.style.backgroundColor = randomColor();
+// })
+
