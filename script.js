@@ -113,30 +113,19 @@ nav.addEventListener('mouseout', function(e){
   handleHover(e, 1);
 })
 
-// const h1 = document.querySelector('h1');
-// function h1Alert(){
-//   alert('Dustane Aziz Ham Aknun H1 :D');
-// }
+//Sticky navigation
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${nav.getBoundingClientRect().height}px`
+});
 
-// h1.addEventListener('mouseenter', h1Alert);
+function stickyNav(entries){
+  const [entry] = entries;
+  console.log(entry);
 
-// setTimeout(() => h1.removeEventListener('mouseenter' ,h1Alert) ,3000);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+}
 
-// const randomInt = (min, max) =>
-//  Math.floor(Math.random() * (max - min + 1) + min);
-
-// const randomColor = () => 
-// `rgb(${randomInt(0,255)},${randomInt(0,255)},${randomInt(0,255)})`;
-
-// document.querySelector('.nav__link').addEventListener('click', function(e){
-//   this.style.backgroundColor = randomColor();
-// })
-
-// document.querySelector('.nav__links').addEventListener('click', function(e){
-//   this.style.backgroundColor = randomColor();
-// })
-
-// document.querySelector('.nav').addEventListener('click', function(e){
-//   this.style.backgroundColor = randomColor();
-// })
-
+headerObserver.observe(header);
