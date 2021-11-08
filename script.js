@@ -122,10 +122,37 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 function stickyNav(entries){
   const [entry] = entries;
-  console.log(entry);
 
   if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 }
 
 headerObserver.observe(header);
+
+
+//Lazy Loading Images
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+function loadImg(entries, observer){
+  const [entry] = entries;
+
+  if(!entry.isIntersecting) return;
+
+  //Replace src with src-data to have better quality images
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function(){
+    this.classList.remove('lazy-img');
+  })
+
+  observer.unobserve(entry.target);
+}
+
+const imageObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  //Will use it just in case you want users don't notice lazy loading
+  //rootMargin: '200px'
+})
+
+imgTargets.forEach(img => imageObserver.observe(img));
