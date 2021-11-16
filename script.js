@@ -183,7 +183,6 @@ const goToSlide = function (slide) {
   slides.forEach(
     (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
   );
-  activateDots(slide);
 };
 
 // Next slide
@@ -194,6 +193,7 @@ const nextSlide = function () {
     curSlide++;
   }
   goToSlide(curSlide);
+  activateDots(slide);
 };
 
 const prevSlide = function () {
@@ -203,11 +203,13 @@ const prevSlide = function () {
     curSlide--;
   }
   goToSlide(curSlide);
+  activateDots(slide);
 };
 
 const init = function(){
-  createDots();
   goToSlide(0);
+  createDots();
+  activateDots(0);
 }
 init();
 
@@ -224,5 +226,6 @@ dotContainer.addEventListener('click', function(e){
   if (e.target.classList.contains('dots__dot')){
     const { slide } = e.target.dataset;
     goToSlide(slide);
+    activateDots(slide);
   }
 })
