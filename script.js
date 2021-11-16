@@ -193,7 +193,7 @@ const nextSlide = function () {
     curSlide++;
   }
   goToSlide(curSlide);
-  activateDots(slide);
+  activateDots(curSlide);
 };
 
 const prevSlide = function () {
@@ -203,7 +203,7 @@ const prevSlide = function () {
     curSlide--;
   }
   goToSlide(curSlide);
-  activateDots(slide);
+  activateDots(curSlide);
 };
 
 const init = function(){
